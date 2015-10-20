@@ -1,15 +1,35 @@
 import React, { Component } from 'react'
+import Keymaster from 'keymaster'
 
 export default class Mario extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      x: 100,
+      y: 100
+    }
+  }
+
+  componentDidMount(){
+    Keymaster('right', () => {
+      this.setState({ x: this.state.x + 1})
+    })
+  }
+
+  componentWillUnmount(){
+    key.unbind('right');
+  }
 
   render() {
 
     const { startingPosition = 'right', position } = this.props
     const marioImg = "../img/mario/stand/" + startingPosition + ".gif"
+    marioStyle.transform = 'matrix(1, 0, 0, 1, ' + this.state.x + ',' + this.state.y + ')';
 
-    marioStyle.transform = 'matrix(1, 0, 0, 1, ' + position.x + ',' + position.y + ')';
-
-    return <img src={marioImg} style={marioStyle} />
+    // while we mutating the styles we need to cloneElement beforehand
+    return React.cloneElement(<img src={marioImg} style={marioStyle} />, { style: { transform: marioStyle.transform }})
   }
 }
 
