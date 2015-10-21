@@ -5,8 +5,8 @@ export default class Mario extends Component {
 
   render() {
 
-    const { startingPosition = 'right', position } = this.props
-    const marioImg = "../img/mario/stand/" + startingPosition + ".gif"
+    const { startingPosition = 'right', position, movement } = this.props
+    const marioImg = "../img/mario/" + movement + "/" + startingPosition + ".gif"
     marioStyle.transform = 'matrix(1, 0, 0, 1, ' + position.x + ',' + position.y + ')';
 
     // while we mutating the styles we need to cloneElement beforehand
@@ -19,7 +19,8 @@ Mario.propTypes = {
   position: React.PropTypes.shape({
     x: React.PropTypes.number.isRequired,
     y: React.PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  movement: React.PropTypes.string
 }
 
 const marioStyle = {

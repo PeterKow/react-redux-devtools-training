@@ -9,6 +9,7 @@ export default class HelloWorld extends Component {
     super(props)
 
     this.state = {
+      movement: 'stand',
       x: 100,
       y: 100
     }
@@ -17,12 +18,17 @@ export default class HelloWorld extends Component {
   right(){
     console.log('right')
     this.setState({ x: this.state.x + 1})
+    this.setState({ movement: 'walk' })
+    setTimeout(()=>{
+      console.log('change')
+      this.setState({ movement: 'stand' })
+    }, 1000)
   }
 
   render() {
     return <div>Hello
               <HotKey right={::this.right}>
-                <Mario startingPosition='left' position={{ x: this.state.x, y: this.state.y }}/>
+                <Mario startingPosition='right' movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
               </HotKey>
            </div>
   }
