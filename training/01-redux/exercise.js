@@ -5,8 +5,8 @@ import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
 
 import { Provider, connect } from 'react-redux';
-import { createStore } from 'redux';
-import marioReducer from './lib/redux/mario.reducer.js'
+import configureStore from './lib/utils/configureStore.js';
+import DevTools from './lib/components/utils/devTools.js'
 
 export default class HelloMario extends Component {
 
@@ -40,18 +40,20 @@ export default class HelloMario extends Component {
   }
 }
 
-let store = createStore(marioReducer);
+let store = configureStore();
 
-@connect(({ application }) => ({ application }))
+@connect(application =>  application)
 class Root extends React.Component {
-  //static propTypes = {
-  //  application: React.PropTypes.object.isRequired,
-  //  history: React.PropTypes.object.isRequired
-  //};
+  static propTypes = {
+    marioReducer: React.PropTypes.object.isRequired,
+  };
 
   render () {
     return (
-      <HelloMario/>
+      <div>
+        <HelloMario/>
+        <DevTools key='dev-tools'/>
+      </div>
     )
   }
 }
