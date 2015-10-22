@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import Mario from './lib/components/mario.js'
 import HotKey from './lib/components/hotkey.js'
 
+let keyDown
+
 export default class HelloWorld extends Component {
 
   constructor(props){
@@ -15,19 +17,42 @@ export default class HelloWorld extends Component {
     }
   }
 
-  right(){
+  right(sub){
     console.log('right')
-    this.setState({ x: this.state.x + 1})
     this.setState({ movement: 'walk' })
     setTimeout(()=>{
       console.log('change')
+      this.setState({ x: this.state.x + 2})
+    }, 250)
+    sub.subscribe(() => {
+      console.log('change go')
       this.setState({ movement: 'stand' })
-    }, 1000)
+    })
+  }
+
+  right2(){
+    console.log('change go')
+    this.setState({ movement: 'stand' })
+    //setTimeout(()=>{
+    //  console.log('change')
+    //  this.setState({ movement: 'stand' })
+    //}, 500)
+  }
+
+  observable(sub){
+    keyDown = sub.map(function (e) {
+      return e.keyCode;
+    })
+
+    keyDown.subscribe(() => {
+      console.log('-------222')
+      //this.setState({ movement: 'stand' })
+    })
   }
 
   render() {
     return <div>Hello
-              <HotKey right={::this.right}>
+              <HotKey right={::this.right} observable={::this.observable} >
                 <Mario startingPosition='right' movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
               </HotKey>
            </div>
