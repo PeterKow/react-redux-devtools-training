@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import Mario from './lib/components/mario.js'
 import HotKey from './lib/components/hotkey.js'
+import Board from './lib/components/board.js'
 
 let keyDown
 
@@ -51,11 +52,13 @@ export default class HelloWorld extends Component {
   }
 
   render() {
-    return <div>Hello
+    return <div>
+              <Board/>
               <HotKey right={::this.right} observable={::this.observable} >
                 <Mario startingPosition='right' movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
               </HotKey>
            </div>
   }
 }
+
 render(<HelloWorld />, document.getElementById('app'))
