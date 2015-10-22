@@ -71,7 +71,7 @@ function makeIndex() {
         React.DOM.link({ rel: 'stylesheet', href: '/shared.css' })
       ),
       React.DOM.body({ id: 'index' },
-        React.DOM.ul({}, list)
+        React.DOM.ul({ className: 'ul-index' }, list)
       )
     )
   );
