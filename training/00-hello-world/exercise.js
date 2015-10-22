@@ -4,7 +4,7 @@ import Mario from './lib/components/mario.js'
 import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
 
-let keyDown
+const timeouts = {}
 
 export default class HelloWorld extends Component {
 
@@ -18,43 +18,21 @@ export default class HelloWorld extends Component {
     }
   }
 
-  right(sub){
-    console.log('right')
-    this.setState({ movement: 'walk' })
-    setTimeout(()=>{
-      console.log('change')
-      this.setState({ x: this.state.x + 2})
-    }, 250)
-    sub.subscribe(() => {
-      console.log('change go')
-      this.setState({ movement: 'stand' })
-    })
-  }
+  right() {
+    clearTimeout(timeouts.stand);
 
-  right2(){
-    console.log('change go')
-    this.setState({ movement: 'stand' })
-    //setTimeout(()=>{
-    //  console.log('change')
-    //  this.setState({ movement: 'stand' })
-    //}, 500)
-  }
+    this.setState({movement: 'walk'})
+    this.setState({x: this.state.x + 2})
 
-  observable(sub){
-    keyDown = sub.map(function (e) {
-      return e.keyCode;
-    })
-
-    keyDown.subscribe(() => {
-      console.log('-------222')
-      //this.setState({ movement: 'stand' })
-    })
+    timeouts.stand = setTimeout(()=> {
+      this.setState({movement: 'stand'})
+    }, 500)
   }
 
   render() {
     return <div>
               <Board/>
-              <HotKey right={::this.right} observable={::this.observable} >
+              <HotKey right={::this.right} >
                 <Mario startingPosition='right' movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
               </HotKey>
            </div>
