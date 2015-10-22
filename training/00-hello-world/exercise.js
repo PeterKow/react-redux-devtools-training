@@ -12,6 +12,7 @@ export default class HelloWorld extends Component {
     super(props)
 
     this.state = {
+      direction: 'right',
       movement: 'stand',
       x: 100,
       y: 100
@@ -21,8 +22,21 @@ export default class HelloWorld extends Component {
   right() {
     clearTimeout(timeouts.stand);
 
+    this.setState({direction: 'right'})
     this.setState({movement: 'walk'})
     this.setState({x: this.state.x + 2})
+
+    timeouts.stand = setTimeout(()=> {
+      this.setState({movement: 'stand'})
+    }, 500)
+  }
+
+  left() {
+    clearTimeout(timeouts.stand);
+
+    this.setState({direction: 'left'})
+    this.setState({movement: 'walk'})
+    this.setState({x: this.state.x - 2})
 
     timeouts.stand = setTimeout(()=> {
       this.setState({movement: 'stand'})
@@ -32,8 +46,8 @@ export default class HelloWorld extends Component {
   render() {
     return <div>
               <Board/>
-              <HotKey right={::this.right} >
-                <Mario startingPosition='right' movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
+              <HotKey right={::this.right} left={::this.left} >
+                <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
               </HotKey>
            </div>
   }
