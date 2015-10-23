@@ -6,7 +6,7 @@ import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
 import App from './lib/components/utils/root.js'
 
-import { goLeft, goRight } from './lib/solution/redux/mario.actions.js'
+import { goLeft, goRight, stand } from './lib/solution/redux/mario.actions.js'
 
 const timeouts = {}
 
@@ -19,7 +19,7 @@ class HelloMario extends Component {
     clearTimeout(timeouts.stand);
 
     timeouts.stand = setTimeout(()=> {
-      this.setState({movement: 'stand'})
+      dispatch(stand())
     }, 500)
   }
 
