@@ -12,17 +12,6 @@ const timeouts = {}
 
 class HelloMario extends Component {
 
-  constructor(props){
-    super(props)
-
-    this.state = {
-      direction: 'right',
-      movement: 'stand',
-      x: 100,
-      y: 100
-    }
-  }
-
   right() {
 
     const { dispatch } = this.props
@@ -52,10 +41,12 @@ class HelloMario extends Component {
 
   render() {
 
+    const { marioState } = this.props
+
     return <div>
       <Board/>
       <HotKey right={::this.right} left={::this.left}>
-        <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
+        <Mario direction={marioState.get('direction')} movement={marioState.get('movement')} position={{ x: marioState.get('x'), y:marioState.get('y') }}/>
       </HotKey>
     </div>
   }
@@ -63,8 +54,10 @@ class HelloMario extends Component {
 
 // Which props do we want to inject, given the global state?
 // Note: use https://github.com/faassen/reselect for better performance.
-function select(){
-  return {}
+function select(state){
+  return {
+    marioState: state.marioReducer
+  }
 }
 
 // Wrap the component to inject dispatch and state into it
