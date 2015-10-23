@@ -46,14 +46,14 @@ export default class HelloMario extends Component {
 
   render() {
     return <div>
-            <Board/>
-            <HotKey right={::this.right} left={::this.left}>
-              <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
-            </HotKey>
-           </div>
+      <Board/>
+      <HotKey right={::this.right} left={::this.left}>
+        <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
+      </HotKey>
+    </div>
   }
 }
 
-render( <App>
+render(  <App>
           <HelloMario/>
-        </App>, document.getElementById('app'))
+         </App>, document.getElementById('app'))

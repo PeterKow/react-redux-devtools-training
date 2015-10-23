@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux';
 import configureStore from '../../utils/configureStore.js';
 import DevTools from './devTools.js'
-import HelloMario from '../../../exercise.js'
 
 let store = configureStore();
 
@@ -13,17 +12,21 @@ class Root extends React.Component {
   };
 
   render () {
+    const { children } = this.props
+
     return (
       <div>
-        <HelloMario/>
+        { children }
         <DevTools key='dev-tools'/>
       </div>
     )
   }
 }
 
-export default function App(){
+export default function App({ children }){
   return  <Provider store={store}>
-            <Root/>
+            <Root>
+              { children }
+            </Root>
           </Provider>
 }

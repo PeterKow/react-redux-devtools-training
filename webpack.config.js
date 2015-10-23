@@ -80,7 +80,6 @@ function makeIndex() {
 
   DIRS.forEach(function (dir) {
     if (fileExists(path.join(CODE, dir, 'exercise.js')))
-    console.log('---', path.join(CODE + '/' + dir + '/index.html'))
       fs.writeFileSync(path.join(CODE + '/' + dir + '/index.html'), makeMarkup(dir+'-exercise'));
 
     if (fileExists(path.join(CODE, dir, 'solution.js')))
