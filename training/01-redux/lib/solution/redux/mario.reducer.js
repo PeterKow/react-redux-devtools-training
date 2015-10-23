@@ -12,6 +12,7 @@ const initialState = Immutable.Map({
 export default function marioReducer(state = initialState, action = { type: undefined }){
   switch (action.type){
     case GO_RIGHT:
+      return state.merge({ direction: 'right', movement: 'walk', x: state.get('x') + 2 })
     case GO_LEFT:
       return state
     default:

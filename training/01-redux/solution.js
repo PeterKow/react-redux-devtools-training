@@ -18,10 +18,6 @@ class HelloMario extends Component {
     dispatch(goRight())
     clearTimeout(timeouts.stand);
 
-    this.setState({direction: 'right'})
-    this.setState({movement: 'walk'})
-    this.setState({x: this.state.x + 2})
-
     timeouts.stand = setTimeout(()=> {
       this.setState({movement: 'stand'})
     }, 500)
