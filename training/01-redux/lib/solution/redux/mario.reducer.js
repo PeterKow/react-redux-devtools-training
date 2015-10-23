@@ -14,7 +14,7 @@ export default function marioReducer(state = initialState, action = { type: unde
     case GO_RIGHT:
       return state.merge({ direction: 'right', movement: 'walk', x: state.get('x') + 2 })
     case GO_LEFT:
-      return state
+      return state.merge({ direction: 'left', movement: 'walk', x: state.get('x') - 2 })
     case STAND:
       return state.merge({ movement: 'stand'})
     default:

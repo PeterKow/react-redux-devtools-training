@@ -13,3 +13,15 @@ export function moveRight(){
     }, 500)
   }
 }
+
+export function moveLeft(){
+  return dispatch => {
+    dispatch(goLeft())
+
+    clearTimeout(timeouts.stand);
+
+    timeouts.stand = setTimeout(()=> {
+      dispatch(stand())
+    }, 500)
+  }
+}

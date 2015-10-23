@@ -6,36 +6,19 @@ import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
 import App from './lib/components/utils/root.js'
 
-import { moveRight } from './lib/solution/redux/marioHigher.action.js'
+import { moveRight, moveLeft } from './lib/solution/redux/marioHigher.action.js'
 
 const timeouts = {}
 
 class HelloMario extends Component {
 
-  right() {
-    const { dispatch } = this.props
-    dispatch(moveRight())
-  }
-
-  left() {
-    clearTimeout(timeouts.stand);
-
-    this.setState({direction: 'left'})
-    this.setState({movement: 'walk'})
-    this.setState({x: this.state.x - 2})
-
-    timeouts.stand = setTimeout(()=> {
-      this.setState({movement: 'stand'})
-    }, 500)
-  }
-
   render() {
 
-    const { marioState } = this.props
+    const { marioState, dispatch } = this.props
 
     return <div>
       <Board/>
-      <HotKey right={::this.right} left={::this.left}>
+      <HotKey right={() => dispatch(moveRight())} left={() => { dispatch(moveLeft())}}>
         <Mario direction={marioState.get('direction')} movement={marioState.get('movement')} position={{ x: marioState.get('x'), y:marioState.get('y') }}/>
       </HotKey>
     </div>
