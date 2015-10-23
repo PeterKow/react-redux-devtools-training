@@ -1,9 +1,8 @@
+import Immutable from 'immutable'
 
-const initialState = {
+const initialState = Immutable.Map({})
 
-}
-
-export default function marioReducer(state = initialState, action){
+export default function marioReducer(state = initialState, action = { type: undefined }){
   switch (action.type){
     default:
       return state

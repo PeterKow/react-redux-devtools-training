@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Keymaster from 'keymaster'
 import Rx from 'rx'
 
 let keydown;

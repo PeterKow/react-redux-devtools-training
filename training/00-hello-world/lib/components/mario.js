@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Keymaster from 'keymaster'
 
 export default class Mario extends Component {
 
