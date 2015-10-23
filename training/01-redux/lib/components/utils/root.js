@@ -3,7 +3,6 @@ import { Provider, connect } from 'react-redux';
 import configureStore from '../../utils/configureStore.js';
 import DevTools from './devTools.js'
 
-let store = configureStore();
 
 @connect(application =>  application)
 class Root extends React.Component {
@@ -23,7 +22,10 @@ class Root extends React.Component {
   }
 }
 
-export default function App({ children }){
+export default function App({ children, solution }){
+
+  let store = configureStore(undefined, solution);
+
   return  <Provider store={store}>
             <Root>
               { children }

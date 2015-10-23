@@ -4,7 +4,8 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import logger from './logger'
 import { persistState } from 'redux-devtools';
-import combinedReducer from '../solution/redux/app.reducers.js'
+import combinedReducer from '../redux/app.reducers.js'
+import combinedReducerSolution from '../solution/redux/app.reducers.js'
 import DevTools from '../components/utils/devTools.js'
 
 let combinedCreateStore
@@ -22,9 +23,16 @@ combinedCreateStore = compose(...storeEnhancers)(createStore)
 
 const finalCreateStore = applyMiddleware(thunk, logger)(combinedCreateStore)
 
-export default function configureStore (initialState) {
+export default function configureStore (initialState, solution) {
 
-  const store = finalCreateStore(combinedReducer, initialState)
+  let store;
+  if(solution){
+    store = finalCreateStore(combinedReducerSolution, initialState)
+  } else {
+    console.log('NO soltion')
+    store = finalCreateStore(combinedReducer, initialState)
+  }
+
 
   if (module.hot)
   // Enable Webpack hot module replacement for reducers
