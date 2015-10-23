@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 
-import { GO_RIGHT, GO_LEFT } from './mario.action.type.js'
+import { GO_RIGHT, GO_LEFT, STAND } from './mario.action.type.js'
 
 const initialState = Immutable.Map({
     direction: 'right',
@@ -15,6 +15,8 @@ export default function marioReducer(state = initialState, action = { type: unde
       return state.merge({ direction: 'right', movement: 'walk', x: state.get('x') + 2 })
     case GO_LEFT:
       return state
+    case STAND:
+      return state.merge({ movement: 'stand'})
     default:
       return state
   }
