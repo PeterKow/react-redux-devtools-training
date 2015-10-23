@@ -4,7 +4,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import logger from './logger'
 import { persistState } from 'redux-devtools';
-import combinedReducer from '../redux/app.reducers.js'
+import combinedReducer from '../solution/redux/app.reducers.js'
 import DevTools from '../components/utils/devTools.js'
 
 let combinedCreateStore
