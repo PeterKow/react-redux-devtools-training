@@ -56,7 +56,7 @@ export default class HelloMario extends Component {
   }
 }
 
-render( <App>
+render( <App reducerSource='lecture'>
           <HelloMario/>
         </App>, document.getElementById('app'))
 

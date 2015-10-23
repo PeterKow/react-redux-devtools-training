@@ -38,6 +38,6 @@ function select(state){
 // Wrap the component to inject dispatch and state into it
 const HelloMarioRedux = connect(select)(HelloMario)
 
-render(  <App solution={true}>
+render(  <App reducerSource='solution'>
           <HelloMarioRedux/>
          </App>, document.getElementById('app'))

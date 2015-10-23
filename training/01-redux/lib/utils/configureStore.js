@@ -6,6 +6,7 @@ import logger from './logger'
 import { persistState } from 'redux-devtools';
 import combinedReducer from '../redux/app.reducers.js'
 import combinedReducerSolution from '../solution/redux/app.reducers.js'
+import combinedReducerLecture from '../lecture/redux/app.reducers.js'
 import DevTools from '../components/utils/devTools.js'
 
 let combinedCreateStore
@@ -23,13 +24,14 @@ combinedCreateStore = compose(...storeEnhancers)(createStore)
 
 const finalCreateStore = applyMiddleware(thunk, logger)(combinedCreateStore)
 
-export default function configureStore (initialState, solution) {
+export default function configureStore (initialState, reducerSource) {
 
   let store;
-  if(solution){
+  if(reducerSource === 'solution'){
     store = finalCreateStore(combinedReducerSolution, initialState)
-  } else {
-    console.log('NO soltion')
+  } else if(reducerSource === 'lecture'){
+    store = finalCreateStore(combinedReducerLecture, initialState)
+  }else {
     store = finalCreateStore(combinedReducer, initialState)
   }
 

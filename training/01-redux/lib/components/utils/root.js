@@ -22,9 +22,9 @@ class Root extends React.Component {
   }
 }
 
-export default function App({ children, solution }){
+export default function App({ children, reducerSource }){
 
-  let store = configureStore(undefined, solution);
+  let store = configureStore(undefined, reducerSource);
 
   return  <Provider store={store}>
             <Root>
