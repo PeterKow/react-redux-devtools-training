@@ -14,12 +14,14 @@ export default class Mario extends Component {
 }
 
 Mario.propTypes = {
+  //right, left
   direction: React.PropTypes.string,
   position: React.PropTypes.shape({
     x: React.PropTypes.number.isRequired,
     y: React.PropTypes.number.isRequired
   }).isRequired,
-  movement: React.PropTypes.string
+  // stand, walk, jump
+  movement: React.PropTypes.string.isRequired
 }
 
 const marioStyle = {

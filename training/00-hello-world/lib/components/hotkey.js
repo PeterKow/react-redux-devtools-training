@@ -7,14 +7,17 @@ export default class HotKey extends Component {
 
   // componentDidMount because it will be triggered only on the client (not on the server)
   componentDidMount(){
-    const { right, left } = this.props
-    // rx.DOM.keydown(documel)
-    const keydownEvent = Rx.Observable.fromEvent(document, 'keydown')
-      .map(function (e) {
-        return e.keyCode;
-      })
+    const { right , left } = this.props
+
+    if (right || left) {
+      const keydownEvent = Rx.Observable.fromEvent(document, 'keydown')
+        .map(function (e) {
+          return e.keyCode;
+        })
 
     keydown = keydownEvent.subscribe(triggerCallbacks)
+
+    }
 
     function triggerCallbacks(e) {
       switch (e){
