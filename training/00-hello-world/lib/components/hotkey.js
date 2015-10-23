@@ -43,5 +43,6 @@ export default class HotKey extends Component {
 }
 
 HotKey.propTypes = {
-  right: React.PropTypes.func
+  right: React.PropTypes.func,
+  left: React.PropTypes.func
 }

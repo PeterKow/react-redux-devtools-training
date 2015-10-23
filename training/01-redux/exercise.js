@@ -8,33 +8,50 @@ import { Provider, connect } from 'react-redux';
 import configureStore from './lib/utils/configureStore.js';
 import DevTools from './lib/components/utils/devTools.js'
 
+const timeouts = {}
+
 export default class HelloMario extends Component {
 
   constructor(props){
     super(props)
 
     this.state = {
+      direction: 'right',
       movement: 'stand',
       x: 100,
       y: 100
     }
   }
 
-  right(){
-    console.log('right')
-    this.setState({ x: this.state.x + 1})
-    this.setState({ movement: 'walk' })
-    setTimeout(()=>{
-      console.log('change')
-      this.setState({ movement: 'stand' })
-    }, 1000)
+  right() {
+    clearTimeout(timeouts.stand);
+
+    this.setState({direction: 'right'})
+    this.setState({movement: 'walk'})
+    this.setState({x: this.state.x + 2})
+
+    timeouts.stand = setTimeout(()=> {
+      this.setState({movement: 'stand'})
+    }, 500)
+  }
+
+  left() {
+    clearTimeout(timeouts.stand);
+
+    this.setState({direction: 'left'})
+    this.setState({movement: 'walk'})
+    this.setState({x: this.state.x - 2})
+
+    timeouts.stand = setTimeout(()=> {
+      this.setState({movement: 'stand'})
+    }, 500)
   }
 
   render() {
     return <div>
             <Board/>
-            <HotKey right={::this.right}>
-              <Mario startingPosition='right' movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
+            <HotKey right={::this.right} left={::this.left}>
+              <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
             </HotKey>
            </div>
   }

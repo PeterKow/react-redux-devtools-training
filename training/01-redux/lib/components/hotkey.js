@@ -1,20 +1,39 @@
 import React, { Component } from 'react'
 import Keymaster from 'keymaster'
+import Rx from 'rx'
+
+let keydown;
 
 export default class HotKey extends Component {
 
-
   // componentDidMount because it will be triggered only on the client (not on the server)
   componentDidMount(){
-    const { right } = this.props
+    const { right, left } = this.props
+    // rx.DOM.keydown(documel)
+    const keydownEvent = Rx.Observable.fromEvent(document, 'keydown')
+      .map(function (e) {
+        return e.keyCode;
+      })
 
-    if (!!right) {
-      Keymaster('right', right)
+    keydown = keydownEvent.subscribe(triggerCallbacks)
+
+    function triggerCallbacks(e) {
+      switch (e){
+        case 39:
+          right()
+          break
+        case 37:
+          left()
+          break
+        default:
+          break
+      }
     }
+
   }
 
   componentWillUnmount(){
-    key.unbind('right');
+    keydown.dispose()
   }
 
   render(){
@@ -24,5 +43,6 @@ export default class HotKey extends Component {
 }
 
 HotKey.propTypes = {
-  right: React.PropTypes.func
+  right: React.PropTypes.func,
+  left: React.PropTypes.func
 }
