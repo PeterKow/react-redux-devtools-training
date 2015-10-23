@@ -6,6 +6,8 @@ import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
 import App from './lib/components/utils/root.js'
 
+import { goLeft, goRight } from './lib/solution/redux/mario.actions.js'
+
 const timeouts = {}
 
 class HelloMario extends Component {
@@ -22,6 +24,9 @@ class HelloMario extends Component {
   }
 
   right() {
+
+    const { dispatch } = this.props
+    dispatch(goRight())
     clearTimeout(timeouts.stand);
 
     this.setState({direction: 'right'})
@@ -46,7 +51,6 @@ class HelloMario extends Component {
   }
 
   render() {
-    const { dispatch } = this.props
 
     return <div>
       <Board/>
