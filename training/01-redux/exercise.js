@@ -3,10 +3,7 @@ import { render } from 'react-dom'
 import Mario from './lib/components/mario.js'
 import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
-
-import { Provider, connect } from 'react-redux';
-import configureStore from './lib/utils/configureStore.js';
-import DevTools from './lib/components/utils/devTools.js'
+import App from './lib/components/utils/root.js'
 
 const timeouts = {}
 
@@ -57,25 +54,5 @@ export default class HelloMario extends Component {
   }
 }
 
-let store = configureStore();
 
-@connect(application =>  application)
-class Root extends React.Component {
-  static propTypes = {
-    marioReducer: React.PropTypes.object.isRequired,
-  };
-
-  render () {
-    return (
-      <div>
-        <HelloMario/>
-        <DevTools key='dev-tools'/>
-      </div>
-    )
-  }
-}
-
-render(  <Provider store={store}>
-          <Root/>
-        </Provider>
-  , document.getElementById('app'))
+render( <App/>, document.getElementById('app'))
