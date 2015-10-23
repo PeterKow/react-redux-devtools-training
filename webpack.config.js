@@ -7,7 +7,7 @@ var React = require('react');
 var renderToStaticMarkup = require('react-dom/server').renderToStaticMarkup;
 
 var CODE = __dirname+'/training';
-var IGNORE = ['shared'];
+var IGNORE = ['shared', 'img'];
 var DIRS = fs.readdirSync(CODE).filter(function (dir) {
   return isDirectory(path.join(CODE, dir)) && IGNORE.indexOf(dir) === -1;
 });
