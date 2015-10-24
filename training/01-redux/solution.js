@@ -18,12 +18,12 @@ class HelloMario extends Component {
     const { marioState, dispatch } = this.props
 
     return <div>
-      <Board/>
-      <HotKey right={() => dispatch(moveRight())} left={() => { dispatch(moveLeft())}}>
-        <Mario direction={marioState.get('direction')} movement={marioState.get('movement')} position={{ x: marioState.get('x'), y:marioState.get('y') }}/>
-        <Turtle/>
-      </HotKey>
-    </div>
+            <Board/>
+            <HotKey right={() => dispatch(moveRight())} left={() => { dispatch(moveLeft())}}>
+              <Mario direction={marioState.get('direction')} movement={marioState.get('movement')} position={{ x: marioState.get('x'), y:marioState.get('y') }}/>
+              <Turtle/>
+            </HotKey>
+           </div>
   }
 }
 
