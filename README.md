@@ -11,3 +11,6 @@ Install [git](http://git-scm.com/downloads) and [node.js](https://nodejs.org/), 
     $ npm start
 
 Open your browser to `http://localhost:8080`
+
+**Screenshot**
+![Alt text](https://raw.githubusercontent.com/PeterKow/react-redux-devtools-training/master/training/img/screenshots/Screen%20Shot%202015-10-25.png "Mario React-Redux")
