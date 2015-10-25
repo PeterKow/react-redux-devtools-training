@@ -1,20 +1,3 @@
-// TODO:
-///////////////////////////////////
-// 1. Implement stand action
-///////////////////////////////////
-
-///////////////////////////////////
-// 2. Implement left action
-///////////////////////////////////
-
-///////////////////////////////////
-// 3. Refactor - Group fundamental actions like "goRight" and "stand" into "moveRight" eg. solution/marioHigher.action.js
-///////////////////////////////////
-
-///////////////////////////////////
-// 4. Refactor - pass dispatch actions directly to HotKey component
-///////////////////////////////////
-
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { connect } from 'react-redux'
@@ -23,6 +6,7 @@ import Turtle from './lib/components/turtle.js'
 import HotKey from './lib/components/hotkey.js'
 import Board from './lib/components/board.js'
 import App from './lib/components/utils/root.js'
+import Instructions from './lib/components/instructions.js'
 
 import { goRight } from './lib/redux/mario.actions.js'
 
@@ -70,6 +54,7 @@ class HelloMario extends Component {
         <Mario direction={marioState.get('direction')} movement={marioState.get('movement')} position={{ x: marioState.get('x'), y: marioState.get('y') }}/>
         <Turtle/>
       </HotKey>
+      <Instructions/>
     </div>
   }
 }

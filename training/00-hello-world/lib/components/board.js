@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 
 export default function Board (){
-  return <div width="766" height="936" style={skyStyle}>
-          <div  style={grassStyle}>
-
-          </div>
+  return <div>
+            <div width="766" height="936" style={skyStyle}/>
+            <div style={grassStyle}/>
          </div>
 
 }
