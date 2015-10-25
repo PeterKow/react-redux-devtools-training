@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class Mario extends Component {
 
-  render() {
+    render() {
 
     const { direction = 'right', position, movement } = this.props
     const marioImg = "../img/mario/" + movement + "/" + direction + ".gif"

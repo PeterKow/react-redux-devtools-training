@@ -44,12 +44,14 @@ export default class HelloWorld extends Component {
   }
 
   render() {
+
+    const { direction, movement, x, y } = this.state
     return <div>
-      <Board/>
-      <HotKey right={::this.right} left={::this.left} >
-        <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
-      </HotKey>
-    </div>
+            <Board/>
+            <HotKey right={::this.right} left={::this.left} >
+              <Mario direction={direction} movement={movement} position={{ x: x, y: y }}/>
+            </HotKey>
+          </div>
   }
 }
 
