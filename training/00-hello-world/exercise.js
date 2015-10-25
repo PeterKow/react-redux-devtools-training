@@ -31,14 +31,19 @@ import Board from './lib/components/board.js'
 
 export default class HelloWorld extends Component {
 
+  constructor(props) {
+    super(props)
+    console.warn('Create state to store info about mario position etc. ')
+  }
+
   right() {
-    console.log('use this.SetState to move mario')
-    // to set state use this.SetState({})
+    console.warn('use this.setState to move mario')
+    // to set state use this.setState({})
   }
 
   left() {
-    console.log('use this.SetState to move mario')
-    // to set state use this.SetState({})
+    console.warn('use this.setState to move mario')
+    // to set state use this.setState({})
   }
 
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import Bord from './lib/components/board.js'
+import Board from './lib/components/board.js'
 import Hotkey from './lib/components/hotkey.js'
 import Mario from './lib/components/mario.js'
 
@@ -127,7 +127,7 @@ render(<HelloWorld />, document.getElementById('app'))
 //
 //  render() {
 //    return <div>
-//      <Bord/>
+//      <Board/>
 //      <Hotkey right={::this.right} />
 //      <Mario position={{ x:100, y:100}} movement='stand'/>
 //    </div>

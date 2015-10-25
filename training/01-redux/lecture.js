@@ -50,7 +50,6 @@ export default class HelloMario extends Component {
       <Board/>
       <HotKey right={::this.right} left={::this.left}>
         <Mario direction={this.state.direction} movement={this.state.movement} position={{ x: this.state.x, y: this.state.y }}/>
-        <Turtle/>
       </HotKey>
     </div>
   }
