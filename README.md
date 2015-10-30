@@ -1,5 +1,5 @@
 # react-redux-devtools-training
-Training how to build web apps with react and reudx
+Training how to build web apps with react and redux
 
 Before the training make sure you can run this repository.
 
