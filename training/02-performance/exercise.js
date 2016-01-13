@@ -19,7 +19,7 @@ class HelloMario extends Component {
     return (
       <div>
         hello
-        <Root1 someData={ marioState.get('direction') }></Root1>
+        <Root1 someData={ marioState.get('direction')} func={() => 'hello func'}></Root1>
         <button onClick={() => dispatch(goLeft())}>Go Left</button>
       </div>
     )
