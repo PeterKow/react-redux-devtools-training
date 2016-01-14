@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 var shallowCompare = require('react-addons-shallow-compare');
 import Immutable from 'immutable'
+import compare from '../utils/compare'
 
 export default class Root1 extends Component {
 
@@ -81,48 +82,4 @@ function takeMe(object, triggerRerender) {
     }
   }
   return newProp
-}
-
-nextState
-
-function compare(objA, objB){
-
-  let newProp = takeMe(nextProps, Root1.triggerRerender)
-  let oldProp = takeMe(instance.props, Root1.triggerRerender)
-
-  // Compare object by ref
-  if (objA === objB) {
-    return true;
-  }
-
-  // ?!?@@?
-  if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
-    return false;
-  }
-
-  // Check length
-  var keysA = Object.keys(objA);
-  var keysB = Object.keys(objB);
-
-  if (keysA.length !== keysB.length) {
-    return false;
-  }
-
-
-  // Test for A's keys different from B.
-  var bHasOwnProperty = hasOwnProperty.bind(objB);
-  for (var i = 0; i < keysA.length; i++) {
-    if (!bHasOwnProperty(keysA[i]) || objA[keysA[i]] !== objB[keysA[i]]) {
-      console.log('not match ', objA[keysA[i]], objB[keysA[i]])
-      return false;
-    }
-  }
-
-  return true;
-
-
-
-
-
-
 }
