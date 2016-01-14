@@ -15,12 +15,21 @@ function compare(objA, objB) {
   //  return false;
   //}
 
-  // Check length of objects
+  // Check for immutable objects
   if(Immutable.Map.isMap(objA) && Immutable.Map.isMap(objB)) {
     return compareImmutable(objA, objB)
   } else if (Immutable.Map.isMap(objA) ? !Immutable.Map.isMap(objB) : Immutable.Map.isMap(objB) ) {
     return false
   }
+
+  // Check for functions
+  if(typeof objA === 'function' && typeof objB === 'function') {
+    return true
+  } else if (typeof objA === 'function' || typeof objB === 'function') {
+    return false
+  }
+
+  // Check length of objects
   var keysA = Object.keys(objA);
   var keysB = Object.keys(objB);
 

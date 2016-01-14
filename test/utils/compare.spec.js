@@ -113,6 +113,18 @@ describe('Compare', () =>{
     })
   })
 
+  it('should return true if both objects are functions', () => {
+    const jsObj1 = function() {}
+    const jsObj2 = function() {}
+    expect(compare(jsObj1, jsObj2)).to.be.equal(true)
+  })
 
+  it('should return false if one of the objects is function', () => {
+    const jsObj1 = function() {}
+    const jsObj2 = {
+      my: 'data',
+    }
+    expect(compare(jsObj1, jsObj2)).to.be.equal(false)
+  })
 
 })
