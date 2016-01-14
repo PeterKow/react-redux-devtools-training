@@ -1,3 +1,5 @@
+import Immutable from 'immutable'
+
 function compare(objA, objB) {
   //
   //let newProp = takeMe(nextProps, Root1.triggerRerender)
@@ -14,6 +16,9 @@ function compare(objA, objB) {
   //}
 
   // Check length of objects
+  if(Immutable.Map.isMap(objA) && Immutable.Map.isMap(objB)) {
+    return compareImmutable(objA, objB)
+  }
   var keysA = Object.keys(objA);
   var keysB = Object.keys(objB);
 
@@ -47,3 +52,9 @@ function compare(objA, objB) {
 }
 
 export default compare
+
+
+function compareImmutable(objA, objB) {
+  console.log('In Immutable!!!')
+  return false
+}
