@@ -1,4 +1,4 @@
-function compare(objA, objB){
+function compare(objA, objB) {
   //
   //let newProp = takeMe(nextProps, Root1.triggerRerender)
   //let oldProp = takeMe(instance.props, Root1.triggerRerender)

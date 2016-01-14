@@ -58,7 +58,9 @@ describe('Compare', () =>{
 
   it('should return true for different nested objects but the same shallow object', () => {
     const  nested = {
-      myNested: 'obj1',
+      myNested: {
+        mySecNested: 'obj1',
+      }
       }
     const obj1 = {
       my: 'data',
@@ -66,8 +68,9 @@ describe('Compare', () =>{
     }
     const obj2 = {
       my: 'data',
-      nested:nested
+      nested: nested
     }
+    obj2.nested.myNested.mySecNested = 'modyfing second nested object '
     expect(compare(obj1, obj2)).to.be.equal(true)
   })
 
