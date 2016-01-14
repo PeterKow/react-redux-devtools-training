@@ -74,7 +74,7 @@ describe('Compare', () =>{
     expect(compare(obj1, obj2)).to.be.equal(true)
   })
 
-  describe.only('Immutable', () => {
+  describe('Immutable', () => {
     it('should return true the same Immutable objects', () => {
       const  nested = {
         myNested: {
@@ -93,6 +93,26 @@ describe('Compare', () =>{
       const obj2 = Immutable.fromJS(jsObj2)
       expect(compare(obj1, obj2)).to.be.equal(true)
     })
+
+    it('should return false if only one of the object is Immutable', () => {
+      const  nested = {
+        myNested: {
+          mySecNested: 'obj1',
+        }
+      }
+      const jsObj1 = {
+        my: 'data',
+        nested: nested
+      }
+      const jsObj2 = {
+        my: 'data',
+        nested: nested
+      }
+      const obj1 = Immutable.fromJS(jsObj1)
+      expect(compare(obj1, jsObj2)).to.be.equal(false)
+    })
   })
+
+
 
 })
