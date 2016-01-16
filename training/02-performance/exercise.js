@@ -19,13 +19,33 @@ class HelloMario extends Component {
   render() {
     const { marioState, dispatch, treeReducer } = this.props
     const tree = treeReducer.toJS()
+    console.log('ss', tree.tree)
+
+    function drawTree() {
+      return (
+        <div>
+          {
+            tree.tree.map((levels, index) => {
+              console.log('levetS', levels)
+              return (<div> level {
+                levels.map((node, index) => {
+                  console.log('node', node.clicks)
+                  return <div>{ node.clicks } node { index }</div>
+                })
+              }</div>)
+            })
+          }
+        </div>
+      )
+    }
+
     return (
       <div>
         hello
         <Root1 someData={ marioState.get('data')} func={() => 'hello func'}></Root1>
         <button onClick={() => dispatch(goLeft())}>Go Left</button>
+        { drawTree(tree) }
         <div style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
-
           <Node someData={ tree.tree[1][0]}
                 onClick={ () => dispatch(addClickToNode({ level: 1, nodeId: 0 })) }>
           </Node>
