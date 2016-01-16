@@ -25,12 +25,20 @@ class HelloMario extends Component {
       return (
         <div>
           {
-            tree.tree.map((levels, index) => {
+            tree.tree.map((levels, levelIndex) => {
               console.log('levetS', levels)
-              return (<div> level {
-                levels.map((node, index) => {
+              return (
+                <div key={levels}
+                     style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
+                <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
+                levels.map((node, nodeIndex) => {
                   console.log('node', node.clicks)
-                  return <div>{ node.clicks } node { index }</div>
+                  return (
+                  <Node key={levelIndex + '' + nodeIndex }
+                        someData={ node }
+                        onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }>
+                  </Node>
+                  )
                 })
               }</div>)
             })
@@ -41,18 +49,18 @@ class HelloMario extends Component {
 
     return (
       <div>
-        hello
+        { /* hello
         <Root1 someData={ marioState.get('data')} func={() => 'hello func'}></Root1>
-        <button onClick={() => dispatch(goLeft())}>Go Left</button>
+        <button onClick={() => dispatch(goLeft())}>Go Left</button> */ }
         { drawTree(tree) }
-        <div style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
+        { /*  <div style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
           <Node someData={ tree.tree[1][0]}
                 onClick={ () => dispatch(addClickToNode({ level: 1, nodeId: 0 })) }>
           </Node>
         </div>
         <div style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
 
-        </div>
+        </div> */ }
       </div>
     )
   }
