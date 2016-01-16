@@ -6,7 +6,7 @@ import Root1 from './lib/components/root1'
 import { goLeft } from './lib/redux/mario.actions'
 var shallowCompare = require('react-addons-shallow-compare');
 import Node from './lib/components/node'
-import { addClickToNode } from './lib/redux/tree/tree.actions'
+import { addClickToNode, addClickToSubNode } from './lib/redux/tree/tree.actions'
 
 @connect(({ treeReducer, marioReducer }) => ({ treeReducer, marioState: marioReducer }))
 class HelloMario extends Component {
@@ -15,12 +15,11 @@ class HelloMario extends Component {
   //  return shallowCompare(this, nextProps, nextState);
   //}
 
-
   render() {
     const { marioState, dispatch, treeReducer } = this.props
     const tree = treeReducer.toJS()
 
-    function drawTree() {
+    function drawNestedTree() {
       return (
         <div>
           {
@@ -38,6 +37,31 @@ class HelloMario extends Component {
                     )
                   })
               }</div>)
+            })
+          }
+        </div>
+      )
+    }
+
+    function drawTree() {
+      return (
+        <div>
+          {
+            tree.tree.map((levels, levelIndex) => {
+              return (
+                <div key={levels}
+                     style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
+                  <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
+                  levels.map((node, nodeIndex) => {
+                    return (
+                      <Node key={levelIndex + '' + nodeIndex }
+                            someData={ node }
+                            onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }
+                            onSubClick={ () => dispatch(addClickToSubNode({ level: levelIndex, nodeId: nodeIndex })) }>
+                      </Node>
+                    )
+                  })
+                }</div>)
             })
           }
         </div>

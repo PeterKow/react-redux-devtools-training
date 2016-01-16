@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 var shallowCompare = require('react-addons-shallow-compare');
+import SubNode from './subNode'
 
 export default class Node extends Component {
-  //
-  //shouldComponentUpdate(nextProps, nextState) {
-  //  if(nextProps.someData.clicks === this.props.someData.clicks){
-  //    console.log('no rerender')
-  //    return false
-  //  }
-  //  console.log('yes rerender')
-  //  return true
-  //
-  //  //return shallowCompare(this, nextProps, nextState);
-  //}
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //if(nextProps.someData.clicks === this.props.someData.clicks){
+    //  console.log('no rerender')
+    //  return false
+    //}
+    //console.log('yes rerender')
+    //return true
+
+    return shallowCompare(this, nextProps, nextState);
+  }
 
   componentDidUpdate() {
     console.log('update')
@@ -21,12 +22,19 @@ export default class Node extends Component {
 
   render() {
     console.log('rerender')
-    const { someData, children, onClick } = this.props
+    const { someData, children, onClick, onSubClick } = this.props
     return (
       <div style={ style }>
+        <div>
         { someData.clicks }
-        <button onClick={ onClick }>Add</button>
+        <button onClick={ onClick }>Add node</button>
         { children }
+        <SubNode
+                 someData={ someData.subNode }
+                 onClick={ onSubClick }>
+
+        </SubNode>
+        </div>
       </div>
     )
   }
@@ -35,6 +43,7 @@ export default class Node extends Component {
 Node.propTypes = {
   someData: React.PropTypes.object,
   onClick: React.PropTypes.func.isRequired,
+  onSubClick: React.PropTypes.func.isRequired,
 }
 
 
