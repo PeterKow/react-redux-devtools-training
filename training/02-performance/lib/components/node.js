@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
+var shallowCompare = require('react-addons-shallow-compare');
 
 export default class Node extends Component {
+  //
+  //shouldComponentUpdate(nextProps, nextState) {
+  //  if(nextProps.someData.clicks === this.props.someData.clicks){
+  //    console.log('no rerender')
+  //    return false
+  //  }
+  //  console.log('yes rerender')
+  //  return true
+  //
+  //  //return shallowCompare(this, nextProps, nextState);
+  //}
 
   componentDidUpdate() {
     console.log('update')
+    //this.setState({ x: 1 })
   }
 
   render() {
+    console.log('rerender')
     const { someData, children, onClick } = this.props
     return (
       <div style={ style }>

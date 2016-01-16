@@ -1,9 +1,10 @@
 import Immutable from 'immutable'
 
 import { ADD_CLICK } from './tree.actionTypes'
+import nested from './menuNested'
 
 const initialState = Immutable.fromJS({
-  tree: generateTree(8)
+  tree: generateTree(23)
 })
 
 export default function treeReducer(state = initialState, action = { type: undefined }){
@@ -39,5 +40,8 @@ function generateLevel(levelNr) {
 }
 
 function createNode() {
-  return { clicks: 0 }
+  return {
+    clicks: 0,
+    nested
+  }
 }
