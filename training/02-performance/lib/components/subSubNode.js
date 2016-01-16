@@ -1,46 +1,39 @@
 import React, { Component } from 'react'
 var shallowCompare = require('react-addons-shallow-compare');
-import SubSubNode from './subSubNode'
 import shouldCompare from './../utils/shouldCompare'
 
-export default class SubNode extends Component {
+export default class SubSubNode extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return shouldCompare(nextProps, this.props, nextState, this.state)
   }
 
   componentDidUpdate() {
-    console.log('update sub  node')
+    console.log('update sub sub node')
+    //this.setState({ x: 1 })
   }
 
   render() {
     console.log('rerender')
-    const { someData, children, onClick, onSubSubClick } = this.props
+    const { someData, children, onClick } = this.props
     return (
       <div style={ style }>
-        <div style={{ width: '90%' }}>
         { someData.clicks }
         <button onClick={ onClick }>Add sub</button>
         { children }
-        <SubSubNode
-          someData={ someData.subSubNode }
-          onClick = { onSubSubClick }>
-        </SubSubNode>
-        </div>
       </div>
     )
   }
 }
 
-SubNode.propTypes = {
+SubSubNode.propTypes = {
   someData: React.PropTypes.object,
   onClick: React.PropTypes.func.isRequired,
-  onSubSubClick: React.PropTypes.func.isRequired,
 }
 
 
 const style = {
-  background: 'yellow',
+  background: 'burlywood',
   width: 'inherit',
   display: 'flex',
   alignItems: 'center',
@@ -48,6 +41,6 @@ const style = {
   border: 'blue',
   borderStyle: 'dashed',
   borderWidth: 'thin',
-  height: '70%',
+  height: '50%',
   margin: 'auto',
 }

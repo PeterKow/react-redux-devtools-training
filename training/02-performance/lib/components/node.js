@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
 var shallowCompare = require('react-addons-shallow-compare');
 import SubNode from './subNode'
+import shouldCompare from './../utils/shouldCompare'
 
 export default class Node extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
-    //if(nextProps.someData.clicks === this.props.someData.clicks){
-    //  console.log('no rerender')
-    //  return false
-    //}
-    //console.log('yes rerender')
-    //return true
-
-    return shallowCompare(this, nextProps, nextState);
+    return shouldCompare(nextProps, this.props, nextState, this.state)
   }
 
   componentDidUpdate() {
@@ -22,16 +16,17 @@ export default class Node extends Component {
 
   render() {
     console.log('rerender')
-    const { someData, children, onClick, onSubClick } = this.props
+    const { someData, children, onClick, onSubClick, onSubSubClick } = this.props
     return (
       <div style={ style }>
-        <div>
+        <div style={{ width: '90%' }}>
         { someData.clicks }
         <button onClick={ onClick }>Add node</button>
         { children }
         <SubNode
                  someData={ someData.subNode }
-                 onClick={ onSubClick }>
+                 onClick={ onSubClick }
+                 onSubSubClick={ onSubSubClick }>
 
         </SubNode>
         </div>
@@ -44,6 +39,7 @@ Node.propTypes = {
   someData: React.PropTypes.object,
   onClick: React.PropTypes.func.isRequired,
   onSubClick: React.PropTypes.func.isRequired,
+  onSubSubClick: React.PropTypes.func.isRequired,
 }
 
 

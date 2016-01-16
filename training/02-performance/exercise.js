@@ -6,7 +6,7 @@ import Root1 from './lib/components/root1'
 import { goLeft } from './lib/redux/mario.actions'
 var shallowCompare = require('react-addons-shallow-compare');
 import Node from './lib/components/node'
-import { addClickToNode, addClickToSubNode } from './lib/redux/tree/tree.actions'
+import { addClickToNode, addClickToSubNode, addClickToSubSubNode } from './lib/redux/tree/tree.actions'
 
 @connect(({ treeReducer, marioReducer }) => ({ treeReducer, marioState: marioReducer }))
 class HelloMario extends Component {
@@ -57,7 +57,8 @@ class HelloMario extends Component {
                       <Node key={levelIndex + '' + nodeIndex }
                             someData={ node }
                             onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }
-                            onSubClick={ () => dispatch(addClickToSubNode({ level: levelIndex, nodeId: nodeIndex })) }>
+                            onSubClick={ () => dispatch(addClickToSubNode({ level: levelIndex, nodeId: nodeIndex })) }
+                            onSubSubClick={ () => dispatch(addClickToSubSubNode({ level: levelIndex, nodeId: nodeIndex })) }>
                       </Node>
                     )
                   })

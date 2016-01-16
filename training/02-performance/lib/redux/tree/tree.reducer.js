@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 
-import { ADD_CLICK, ADD_SUBCLICK } from './tree.actionTypes'
+import { ADD_CLICK, ADD_SUBCLICK, ADD_SUB_SUBCLICK } from './tree.actionTypes'
 import nested from './menuNested'
 
 const initialState = Immutable.fromJS({
@@ -24,6 +24,9 @@ export default function treeReducer(state = initialState, action = { type: undef
     case ADD_SUBCLICK:
       return state.setIn(['tree', level, nodeId, 'subNode', 'clicks'],
         state.getIn(['tree', level, nodeId, 'subNode','clicks']) + 1 )
+    case ADD_SUB_SUBCLICK:
+      return state.setIn(['tree', level, nodeId, 'subNode', 'subSubNode', 'clicks'],
+        state.getIn(['tree', level, nodeId, 'subNode', 'subSubNode','clicks']) + 1 )
     default:
       return state
   }
@@ -54,7 +57,11 @@ function createNode() {
     clicks: 0,
     subNode: {
       clicks: 0,
-      subNodeData: 'hello'
+      subNodeData: 'hello',
+      subSubNode: {
+        clicks: 0,
+        subSubNodeData: 'deeep!',
+      }
     },
     nested
   }
