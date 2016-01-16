@@ -11,35 +11,32 @@ import { addClickToNode } from './lib/redux/tree/tree.actions'
 @connect(({ treeReducer, marioReducer }) => ({ treeReducer, marioState: marioReducer }))
 class HelloMario extends Component {
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return shallowCompare(this, nextProps, nextState);
-  }
+  //shouldComponentUpdate(nextProps, nextState) {
+  //  return shallowCompare(this, nextProps, nextState);
+  //}
 
 
   render() {
     const { marioState, dispatch, treeReducer } = this.props
     const tree = treeReducer.toJS()
-    console.log('ss', tree.tree)
 
     function drawTree() {
       return (
         <div>
           {
             tree.tree.map((levels, levelIndex) => {
-              console.log('levetS', levels)
               return (
                 <div key={levels}
                      style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
-                <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
-                levels.map((node, nodeIndex) => {
-                  console.log('node', node.clicks)
-                  return (
-                  <Node key={levelIndex + '' + nodeIndex }
-                        someData={ node }
-                        onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }>
-                  </Node>
-                  )
-                })
+                  <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
+                  levels.map((node, nodeIndex) => {
+                    return (
+                      <Node key={levelIndex + '' + nodeIndex }
+                            someData={ node }
+                            onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }>
+                      </Node>
+                    )
+                  })
               }</div>)
             })
           }
