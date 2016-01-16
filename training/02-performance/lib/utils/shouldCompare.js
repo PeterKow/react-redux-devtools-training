@@ -6,10 +6,10 @@ export default function shouldCompare(nextProps, oldProps, nextState, oldState) 
   //return shallowCompare(this, nextProps.someData, nextState);
 
   if(nextProps.someData.clicks === oldProps.someData.clicks) {
-    console.log('no rerender')
+    //console.log('no rerender')
     return false
   }
-  console.log('yes rerender')
+  //console.log('yes rerender')
   return true
 
 }

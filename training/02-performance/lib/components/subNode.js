@@ -14,7 +14,7 @@ export default class SubNode extends Component {
   }
 
   render() {
-    console.log('rerender')
+    //console.log('rerender')
     const { someData, children, onClick, onSubSubClick } = this.props
     return (
       <div style={ style }>

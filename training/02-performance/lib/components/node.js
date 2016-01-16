@@ -17,6 +17,7 @@ export default class Node extends Component {
   render() {
     console.log('rerender')
     const { someData, children, onClick, onSubClick, onSubSubClick } = this.props
+    console.log('some data', someData)
     return (
       <div style={ style }>
         <div style={{ width: '90%' }}>
