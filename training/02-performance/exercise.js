@@ -55,7 +55,7 @@ class HelloMario extends Component {
                   levels.map((node, nodeIndex) => {
                     return (
                       <Node key={ levelIndex + '' + nodeIndex }
-                            someData={ node }
+                            someData={ treeReducer.getIn(['tree',levelIndex, nodeIndex]) }
                             onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }
                             onSubClick={ () => dispatch(addClickToSubNode({ level: levelIndex, nodeId: nodeIndex })) }
                             onSubSubClick={ () => dispatch(addClickToSubSubNode({ level: levelIndex, nodeId: nodeIndex })) }>

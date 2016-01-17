@@ -18,7 +18,7 @@ export default class SubSubNode extends Component {
     const { someData, children, onClick } = this.props
     return (
       <div style={ style }>
-        { someData.clicks }
+        { someData.get('clicks') }
         <button onClick={ onClick }>Add sub</button>
         { children }
       </div>
