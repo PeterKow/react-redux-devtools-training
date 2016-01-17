@@ -17,15 +17,14 @@ export default class Node extends Component {
   render() {
     console.log('rerender')
     const { someData, children, onClick, onSubClick, onSubSubClick } = this.props
-    console.log('some data', someData)
     return (
       <div style={ style }>
         <div style={{ width: '90%' }}>
-        { someData.clicks }
+        { someData.get('clicks') }
         <button onClick={ onClick }>Add node</button>
         { children }
         <SubNode
-                 someData={ someData.subNode }
+                 someData={ someData.get('subNode') }
                  onClick={ onSubClick }
                  onSubSubClick={ onSubSubClick }>
 

@@ -19,29 +19,29 @@ class HelloMario extends Component {
     const { marioState, dispatch, treeReducer } = this.props
     const tree = treeReducer.toJS()
 
-    function drawNestedTree() {
-      return (
-        <div>
-          {
-            tree.tree.map((levels, levelIndex) => {
-              return (
-                <div key={levels}
-                     style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
-                  <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
-                  levels.map((node, nodeIndex) => {
-                    return (
-                      <Node key={levelIndex + '' + nodeIndex }
-                            someData={ node }
-                            onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }>
-                      </Node>
-                    )
-                  })
-              }</div>)
-            })
-          }
-        </div>
-      )
-    }
+    //function drawNestedTree() {
+    //  return (
+    //    <div>
+    //      {
+    //        tree.tree.map((levels, levelIndex) => {
+    //          return (
+    //            <div key={levels}
+    //                 style={{ display: 'flex', width: '100%', height: '10em', textAlign: 'center' }}>
+    //              <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
+    //              levels.map((node, nodeIndex) => {
+    //                return (
+    //                  <Node key={levelIndex + '' + nodeIndex }
+    //                        someData={ node }
+    //                        onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }>
+    //                  </Node>
+    //                )
+    //              })
+    //          }</div>)
+    //        })
+    //      }
+    //    </div>
+    //  )
+    //}
 
     function drawTree() {
       return (
@@ -54,8 +54,8 @@ class HelloMario extends Component {
                   <div style={{ transform: 'rotate(90deg)',	transformOrigin: 'left 25px', fontSize: '1.8em', width: '25px'}}> Lev:{ levelIndex } </div> {
                   levels.map((node, nodeIndex) => {
                     return (
-                      <Node key={levelIndex + '' + nodeIndex }
-                            someData={ node }
+                      <Node key={ levelIndex + '' + nodeIndex }
+                            someData={ treeReducer.getIn(['tree',levelIndex, nodeIndex]) }
                             onClick={ () => dispatch(addClickToNode({ level: levelIndex, nodeId: nodeIndex })) }
                             onSubClick={ () => dispatch(addClickToSubNode({ level: levelIndex, nodeId: nodeIndex })) }
                             onSubSubClick={ () => dispatch(addClickToSubSubNode({ level: levelIndex, nodeId: nodeIndex })) }>

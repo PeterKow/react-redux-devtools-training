@@ -4,7 +4,7 @@ import { ADD_CLICK, ADD_SUBCLICK, ADD_SUB_SUBCLICK } from './tree.actionTypes'
 import nested from './menuNested'
 
 const initialState = Immutable.fromJS({
-  tree: generateTree(3)
+  tree: generateTree(20)
 })
 
 export default function treeReducer(state = initialState, action = { type: undefined }){
