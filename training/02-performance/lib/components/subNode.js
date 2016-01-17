@@ -19,11 +19,11 @@ export default class SubNode extends Component {
     return (
       <div style={ style }>
         <div style={{ width: '90%' }}>
-        { someData.get('clicks') }
+        { someData.clicks }
         <button onClick={ onClick }>Add sub</button>
         { children }
         <SubSubNode
-          someData={ someData.get('subSubNode') }
+          someData={ someData.subSubNode }
           onClick = { onSubSubClick }>
         </SubSubNode>
         </div>
