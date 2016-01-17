@@ -4,9 +4,9 @@ import shouldCompare from './../utils/shouldCompare'
 
 export default class SubSubNode extends Component {
 
-  //shouldComponentUpdate(nextProps, nextState) {
-  //  return shouldCompare(nextProps, this.props, nextState, this.state)
-  //}
+  shouldComponentUpdate(nextProps, nextState) {
+    return shouldCompare(nextProps, this.props, nextState, this.state)
+  }
 
   componentDidUpdate() {
     console.log('update sub sub node')
